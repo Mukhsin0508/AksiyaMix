@@ -1,0 +1,65 @@
+
+services:
+  web:
+    build: .
+    command:  >
+      sh -c "
+      python manage.py makemigrations --noinput &&
+      python manage.py migrate --noinput &&
+      python manage.py collectstatic --noinput &&
+      python3 manage.py runserver 0.0.0.0:8000"
+    env_file:
+      - ./src/.env
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./src:/app"
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:latest
+    container_name: db
+    env_file:
+      - ./src/.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis_data:/data
+
+  celery_worker:
+    build: .
+    command: celery -A config worker --loglevel=info
+    volumes:
+      - "./src:/app"
+    depends_on:
+        - redis
+    env_file:
+      - ./src/.env
+
+  celery_beat:
+    build: .
+    command: celery -A config beat --loglevel=info
+    volumes:
+      - "./src:/app"
+    depends_on:
+        - redis
+    env_file:
+      - ./src/.env
+
+volumes:
+    postgres_data:
+    redis_data:
