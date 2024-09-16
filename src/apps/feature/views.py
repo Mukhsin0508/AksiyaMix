@@ -1,6 +1,9 @@
 from rest_framework import generics
-from .models import Feature, FeatureValue, DiscountFeature
+from .models import Feature, FeatureValue, DiscountFeatureCombination, DiscountFeatureValue
 from .serializers import FeatureSerializer, FeatureValueSerializer, DiscountFeatureSerializer
+
+
+
 
 # ===== CRUD for the Future model =====
 class FeatureListCreateView(generics.ListCreateAPIView):
@@ -12,6 +15,7 @@ class FeatureRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Feature.objects.all()
 
     serializer_class = FeatureSerializer
+
 
 
 # ===== CRUD for the FeatureValue model =====
@@ -26,14 +30,28 @@ class FeatureValueRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIVie
     serializer_class = FeatureValueSerializer
 
 
+
 # ===== CRUD for the DiscountFeature model =====
-class DiscountFeatureListCreateView(generics.ListCreateAPIView):
-    queryset = DiscountFeature.objects.all()
+class DiscountFeatureCombinationListCreateView(generics.ListCreateAPIView):
+    queryset = DiscountFeatureCombination.objects.all()
 
     serializer_class = DiscountFeatureSerializer
 
-class DiscountFeatureRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = DiscountFeature.objects.all()
+class DiscountFeatureCombinationRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = DiscountFeatureCombination.objects.all()
+
+    serializer_class = DiscountFeatureSerializer
+
+
+
+# ===== CRUD for the DiscountFeature model =====
+class DiscountFeatureValueListCreateView(generics.ListCreateAPIView):
+    queryset = DiscountFeatureValue.objects.all()
+
+    serializer_class = DiscountFeatureSerializer
+
+class DiscountFeatureValueRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = DiscountFeatureValue.objects.all()
 
     serializer_class = DiscountFeatureSerializer
 

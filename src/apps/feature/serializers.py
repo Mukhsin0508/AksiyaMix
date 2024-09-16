@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Feature, FeatureValue, DiscountFeature
+from .models import Feature, FeatureValue, DiscountFeatureCombination, DiscountFeatureValue
 
 # ====== Serializers for the Feature model, the FeatureValue model, and the DiscountFeature model ======
 
@@ -19,9 +19,16 @@ class FeatureValueSerializer(serializers.ModelSerializer):
         model = FeatureValue
         fields = '__all__'
 
+class DiscountFeatureCombinationSerializer(serializers.ModelSerializer):
+    """ Discount Feature Combination serializer """
+
+    class Meta:
+        model = DiscountFeatureCombination
+        fields = '__all__'
+
 class DiscountFeatureSerializer(serializers.ModelSerializer):
     """ Discount Feature serializer """
 
     class Meta:
-        model = DiscountFeature
+        model = DiscountFeatureValue
         fields = '__all__'

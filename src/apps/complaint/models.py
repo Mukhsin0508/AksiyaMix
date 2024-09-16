@@ -17,7 +17,7 @@ class Complaint(models.Model):
                                 blank = True,
                                 null = True,
                                 related_name='complaints')
-    discount = models.ForeignKey('discounts.Discount',
+    discount = models.ForeignKey('discount.Discount',
                                  on_delete=models.CASCADE,
                                  blank = True,
                                  null = True,

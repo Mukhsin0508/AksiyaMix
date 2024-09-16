@@ -10,7 +10,11 @@ urlpatterns = [
     path("create/", FeatureValueListCreateView.as_view(), name="feature_value_create"),
     path("feature-value/<int:pk>/", FeatureValueRetrieveUpdateDestroyView.as_view(), name="feature_value"),
 
-    path("create/", DiscountFeatureListCreateView.as_view(), name="discount_feature_create"),
-    path("discount-feature/<int:pk>/", DiscountFeatureRetrieveUpdateDestroyView.as_view(), name="discount_feature"),
+    path("create/", DiscountFeatureCombinationListCreateView.as_view(), name="feature_combination_create"),
+    path("feature-combination/<int:pk>/", DiscountFeatureCombinationRetrieveUpdateDestroyView.as_view(),
+                            name="discount_feature_combination"),
+
+    path("create/", DiscountFeatureValueListCreateView.as_view(), name="discount_feature_create"),
+    path("discount-feature/<int:pk>/", DiscountFeatureValueListCreateView.as_view(), name="discount_feature"),
 
 ]

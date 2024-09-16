@@ -8,11 +8,12 @@ from moviepy.editor import VideoFileClip
 from django.core.exceptions import ValidationError
 from django.db.models.expressions import result
 from apps.company.models import *
-from apps.discount.models import Discount
+from django.apps import apps
 
 
 def validate_unique_id(value):
     """ Validate unique id for the company """
+    Discount = apps.get_model('discount', 'Discount')
 
     max_attempts = 100
     attempts = 0

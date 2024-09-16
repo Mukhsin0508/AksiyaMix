@@ -19,11 +19,6 @@ from django.urls import path, include
 from .yasg import schema_view
 from debug_toolbar.toolbar import debug_toolbar_urls
 
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
-
 
 
 urlpatterns = [
@@ -31,7 +26,7 @@ urlpatterns = [
 
     # ================== API URLS ====================
     # path("api/v1/ads/", include("apps.ads.urls")),
-    # path("api/v1/auth/", include("apps.authentication.urls")),
+    path("api/v1/auth/", include("apps.authentication.urls")),
     # path("api/v1/branch/", include("apps.branch.urls")),
     # path("api/v1/category/", include("apps.category.urls")),
     # path("api/v1/comment/", include("apps.comment.urls")),
@@ -54,10 +49,5 @@ urlpatterns = [
 
     # ==================== CKEditor ====================
     path('ckeditor/', include('ckeditor_uploader.urls')),
-
-    # ==================== Simple JWT ====================
-    path ( 'api/token/' , TokenObtainPairView.as_view ( ) , name = 'token_obtain_pair' ) ,
-    path ( 'api/token/refresh/' , TokenRefreshView.as_view ( ) , name = 'token_refresh' ) ,
-
 
 ] + debug_toolbar_urls()

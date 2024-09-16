@@ -9,7 +9,7 @@ from .serializers import *
 # =========== CRUD for the CustomUser model ==========
 class CustomUserListCreateView(generics.ListCreateAPIView):
     queryset = CustomUser.object.all()
-    serializers = CustomUserSerializer
+    serializer_class = CustomUserSerializer
 
     def create(self, request, *args, **kwargs):
         try:
@@ -19,7 +19,7 @@ class CustomUserListCreateView(generics.ListCreateAPIView):
 
 class CustomUserRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = CustomUser.object.all()
-    serializers = CustomUserSerializer
+    serializer_class = CustomUserSerializer
 
     def update(self, request, *args, **kwargs):
         try:
