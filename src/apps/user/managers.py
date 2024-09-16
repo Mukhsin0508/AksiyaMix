@@ -6,7 +6,7 @@ class CustomUserManager(UserManager):
         email = self.normalize_email(email)
         user = self.model(username=username, email=email, **extra_fields)
         user.password = make_password(password)
-        user.save(using=self._db)
+        user.save ( )
         return user
 
     def create_user(self, phone_number, email=None, password=None, **extra_fields):

@@ -69,6 +69,7 @@ class DiscountImageSerializer(serializers.ModelSerializer):
         model = DiscountImage
         fields = '__all__'
 
+
 class ServiceImageSerializer(serializers.ModelSerializer):
     """ Service image serializer """
 

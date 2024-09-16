@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "drf_yasg" , # which is used to create the api documentation # pip install drf-yasg
 
     'apps.ads.apps.AdsConfig',
-    'apps.authorization.apps.AuthorizationConfig',
+    'apps.authentication.apps.AuthenticationConfig',
     'apps.branch.apps.BranchConfig',
     'apps.category.apps.CategoryConfig',
     'apps.comment.apps.CommentConfig',

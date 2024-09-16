@@ -18,7 +18,7 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(max_length=50)
 
     USERNAME_FIELD = 'phone_number'
-    username = models.CharField(max_length=255)
+    username = models.CharField(max_length=255, unique = True)
     object = CustomUserManager()
 
     phone_number = models.CharField(max_length=13, unique=True, validators=[phone_validate])
@@ -48,15 +48,30 @@ class CustomUser(AbstractUser):
             self.username = self.generate_username()
         super().save(*args, **kwargs)
 
+
+class UserLocation(models.Model):
+    """ Company location model """
+    company = models.ForeignKey ( 'CustomUser' , on_delete = models.CASCADE ,
+                                  related_name = 'user_locations' )
+
+    region = models.CharField(max_length=55)
+    district = models.CharField(max_length=55)
+
+    def get_user_address(self):
+        return {
+            'region': self.region,
+            'district': self.district,
+        }
+
 class UserToken(models.Model):
     """ User Token model"""
     user = models.ForeignKey('CustomUser', on_delete=models.CASCADE, related_name='tokens')
-    token = models.CharField(max_length=255)
+    access_token = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = ('user', 'token')
+        unique_together = ('user', 'access_token')
 
     def __str__(self):
-        return self.token
+        return self.access_token
