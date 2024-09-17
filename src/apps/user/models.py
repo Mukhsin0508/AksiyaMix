@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.conf import settings
 
 from apps.user.managers import CustomUserManager
-from apps.user.validators import phone_validate
+from apps.user.validators import phone_validate , birthdate_validate
 
 
 class CustomUser(AbstractUser):
@@ -26,7 +26,7 @@ class CustomUser(AbstractUser):
     profile_picture = models.ImageField(upload_to='profile_pictures/',blank=True, null=True)
     gender = models.PositiveSmallIntegerField(choices=Gender.choices, blank=True, null=True)
 
-    birth_date = models.DateField()
+    birth_date = models.DateField(validators = [birthdate_validate], blank = True, null = True)
     address = models.CharField(max_length=200, blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)

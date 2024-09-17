@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from email_validator import validate_email, EmailNotValidError
+from datetime import datetime
 
 
 def phone_validate(phone_number: str) -> None:
@@ -16,3 +17,9 @@ def email_validate(email: str) -> None:
         email = email_info.normalized
     except EmailNotValidError as e:
         raise ValidationError(str(e))
+
+def birthdate_validate(birth_date) -> None:
+        try:
+            datetime.strptime ( birth_date , '%d/%m/%Y' )
+        except ValueError:
+            raise ValueError ( "Incorrect data format, should be YYYY-MM-DD" )
