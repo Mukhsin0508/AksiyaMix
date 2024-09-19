@@ -3,10 +3,8 @@ import  json
 
 # Load the data from the JSON files from data/
 class Location:
-    districts_file_path = os.path.join((os.path.dirname(__file__)),
-                                       '/Users/mukhsinmukhtorov/projects/AksiyaMix/src/data/districts.json')
-    regions_file_path = os.path.join((os.path.dirname(__file__)),
-                                     '/Users/mukhsinmukhtorov/projects/AksiyaMix/src/data/regions.json')
+    districts_file_path = os.path.join ( os.path.dirname ( __file__ ) , 'data/districts.json' )
+    regions_file_path = os.path.join ( os.path.dirname ( __file__ ) , 'data/regions.json' )
 
     @classmethod
     def load_data(cls):

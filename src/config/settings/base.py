@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 from dotenv import load_dotenv
 from .jazzmin import JAZZMIN_SETTINGS
+from .rest_framework import REST_FRAMEWORK
 
 
 

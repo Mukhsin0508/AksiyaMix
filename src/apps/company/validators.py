@@ -12,7 +12,6 @@ from apps.company.models import *
 
 
 
-
 def validate_unique_id(value):
     """ Validate unique id for the company """
 

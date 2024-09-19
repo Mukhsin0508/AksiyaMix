@@ -38,9 +38,3 @@ class UserLocationSerializer(serializers.ModelSerializer):
         rep['region'] = dict(Location.get_region_choices())[instance.region]
         rep['district'] = dict(Location.get_districts_by_regions(instance.region_id))[instance.district]
         return rep
-
-class UserTokenSerializer(serializers.ModelSerializer):
-    """ User token serializer """
-    class Meta:
-        model = UserToken
-        fields = "__all__"

@@ -5,6 +5,7 @@ from .models import *
 from .serializers import *
 
 
+
 # ===== CRUD for the DiscountTypes model =====
 class DiscountTypesListCreateView(generics.ListCreateAPIView):
     queryset = DiscountTypes.objects.all()
