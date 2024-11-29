@@ -1,6 +1,4 @@
 import os
-import secrets
-from os import access
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
@@ -47,9 +45,8 @@ class ForgotPasswordSerializer(serializers.Serializer):
         reset_token = token_generator.make_token( user )
 
         # Build the password reset URL
-        reset_url = f"{os.environ['PASSWORD_RESET_BASE_URL']}/{reset_token}"
-        reset_url = self.context['request'].build_absolute_uri( f'/reset-password/{user.pk}/{reset_token}/' )
-
+        reset_url = self.context['request'].build_absolute_uri( f'api/v1/auth/reset-password/{user.pk}/{reset_token}/' )
+        print(reset_url)
         try:
             EskizUz.send_sms(
                 username = username,
@@ -132,7 +129,7 @@ class RegisterSerializer(VerifyCodeSerializer):
 
         user = get_user_model().objects.create(username = username, password = password)
 
-        cache.delete(EskizUz.AUTH_CODE_MESSAGE.format(username = username))
+        cache.delete(EskizUz.AUTH_CODE_KEY.format(username = username))
 
         refresh = RefreshToken.for_user(user)
         attrs['refresh'] = str(refresh)

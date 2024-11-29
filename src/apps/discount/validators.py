@@ -6,7 +6,6 @@ import ffmpeg
 from moviepy.editor import VideoFileClip
 
 from django.core.exceptions import ValidationError
-from django.db.models.expressions import result
 from apps.company.models import *
 from django.apps import apps
 

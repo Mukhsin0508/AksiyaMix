@@ -67,5 +67,4 @@ def password_validate(password: str) -> tuple[bool , str]:
     if re.search ( r'(.)\1{2,}' , password ):
         return False , "Password should not contain repeated characters (3 or more times in a row)."
 
-    # If all checks pass
     return True , "Password is valid."

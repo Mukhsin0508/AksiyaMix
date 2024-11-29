@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.urls import path, include
 from .yasg import schema_view
@@ -22,7 +23,7 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path('i18n/', include('django.conf.urls.i18n')),  # Add this line for language switching
 
     # ================== API URLS ====================
     # path("api/v1/ads/", include("apps.ads.urls")),
@@ -50,4 +51,13 @@ urlpatterns = [
     # ==================== CKEditor ====================
     path('ckeditor/', include('ckeditor_uploader.urls')),
 
-] + debug_toolbar_urls()
+]
+
+# Translated URL patterns
+urlpatterns += i18n_patterns(
+    path("admin/", admin.site.urls),
+    # Add other URL patterns that should be translated here
+)
+
+# Debug toolbar URLs
+urlpatterns += debug_toolbar_urls()

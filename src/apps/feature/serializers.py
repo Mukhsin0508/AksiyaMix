@@ -2,7 +2,6 @@ from rest_framework import serializers
 
 from .models import Feature, FeatureValue, DiscountFeatureCombination, DiscountFeatureValue
 
-# ====== Serializers for the Feature model, the FeatureValue model, and the DiscountFeature model ======
 
 class FeatureSerializer(serializers.ModelSerializer):
     """ Feature serializer """

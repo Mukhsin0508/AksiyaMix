@@ -11,7 +11,6 @@ from django.db.models.expressions import result
 from apps.company.models import *
 
 
-
 def validate_unique_id(value):
     """ Validate unique id for the company """
 

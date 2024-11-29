@@ -2,6 +2,9 @@ from django.db import models
 from django.core.exceptions import ValidationError
 import config.settings.auth
 
+
+
+
 class Notification(models.Model):
     """ Notification model"""
     company = models.ForeignKey('company.Company',

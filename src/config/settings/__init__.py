@@ -6,3 +6,4 @@ from .jazzmin import *
 from .rest_framework import *
 from .translation import *
 from .sms_providers import *
+from .swagger import *

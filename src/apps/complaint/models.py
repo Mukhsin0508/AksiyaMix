@@ -1,4 +1,3 @@
-from click.core import batch
 from django.db import models
 from django.conf import settings
 

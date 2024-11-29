@@ -1,12 +1,8 @@
-from lib2to3.fixes.fix_input import context
-from logging import raiseExceptions
-
-from future.utils import raise_
 from rest_framework import generics, status
 from rest_framework.generics import CreateAPIView , GenericAPIView
 from rest_framework.response import Response
 from django.core.exceptions import ValidationError
-from urllib3 import request
+
 
 from .models import *
 from .serializers import *
@@ -33,12 +29,13 @@ class PasswordResetConfirmAPIView(generics.GenericAPIView):
     permission_classes = ()
     authentication_classes = ()
     serializer_class = PasswordResetSerializer
+    queryset = []
 
     def post(self, request, user_id, token, *args, **kwargs):
         serializer = self.serializer_class( data = request.data )
         serializer.is_valid( raise_exception = True )
 
-        new_password = serializer.validated_data[ "new_password" ]
+        new_password = serializer.validated_data[ "password" ]
 
         try:
             user = get_user_model().objects.get(pk=user_id)
@@ -70,6 +67,8 @@ class SendCodeAPIView(GenericAPIView):
     """
     permission_classes = ()
     authentication_classes = ()
+
+    serializer_class = SendCodeSerializer
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
