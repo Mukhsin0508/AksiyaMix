@@ -275,7 +275,7 @@
 
 | File | Summary |
 | --- | --- |
-| [docker-compose.yml](https://github.com/Mukhsin0508/AksiyaMix.git/blob/main/docker-compose.yml) | <code>❯ REPLACE-ME</code> |
+| [docker-compose.yml](https://github.com/Mukhsin0508/AksiyaMix/blob/main/docker-compose.yml) | <code>❯ REPLACE-ME</code> |
 | [Dockerfile](https://github.com/Mukhsin0508/AksiyaMix.git/blob/main/Dockerfile) | <code>❯ REPLACE-ME</code> |
 
 </details>
